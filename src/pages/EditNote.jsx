@@ -2,7 +2,7 @@ import {useState,useEffect} from "react";
 import axios from "axios";
 import { useParams,useNavigate, Navigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
+const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5005";
 
 function EditNote(props){
     const [title,setTitle]= useState("");
