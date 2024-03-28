@@ -16,7 +16,20 @@ function Signup(props) {
     const handlePassword = (e)=>setPassword(e.target.value);
     const handleName = (e)=>setName(e.target.value);
 
-    const handleSignupSubmit = (e)=>{};
+    const handleSignupSubmit = (e)=>{
+        e.preventDefault();
+        const requestBody = {email,password,name};
+
+        axios
+            .post(`${API_URL}/auth/signup`,requestBody)
+            .then((response)=>{
+                navigate('/login');
+            })
+            .catch((error)=>{
+                const errorDescription = error.response.data.message;
+                setErrorMessage(errorDescription)
+            })
+    };
 
     return(
         <div className="Signup">

@@ -6,9 +6,9 @@ import './index.css'
 import {BrowserRouter as Router} from "react-router-dom";
 import { AuthProviderWrapper } from './context/auth.context.jsx';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 
-root.render(
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <AuthProviderWrapper>
