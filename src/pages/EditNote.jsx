@@ -1,6 +1,7 @@
 import {useState,useEffect} from "react";
 import axios from "axios";
 import { useParams,useNavigate, Navigate } from "react-router-dom";
+import TextEditor from "../components/TextEditor";
 
 const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -12,8 +13,9 @@ function EditNote(props){
     const navigate = useNavigate();
 
     useEffect(()=>{
+        const storedToken = localStorage.getItem('authToken');
         axios
-            .get(`${API_URL}/notes/${noteId}`)
+            .get(`${API_URL}/api/notes/${noteId}`,{headers:{Authorization:`Bearer ${storedToken}`}})
             .then((response)=>{
                 const oneNote = response.data;
                 setTitle(oneNote.title);
@@ -26,17 +28,19 @@ function EditNote(props){
     const handleFormSubmit= (e)=>{
         e.preventDefault();
         const requestBody = {title,tag,text};
+        const storedToken = localStorage.getItem('authToken');
 
         axios   
-            .put(`${API_URL}/notes/${noteId}`, requestBody)
+            .put(`${API_URL}/api/notes/${noteId}`, requestBody,{headers:{Authorization:`Bearer ${storedToken}`}})
             .then((response)=>{
                 navigate(`/notes/${noteId}`)
             })
     };
 
     const deleteNote = () =>{
+        const storedToken = localStorage.getItem('authToken');
         axios   
-            .delete(`${API_URL}/notes/${noteId}`)
+            .delete(`${API_URL}/api/notes/${noteId}`,{headers:{Authorization:`Bearer ${storedToken}`}})
             .then(()=>{
                 navigate("/notes");
             })
@@ -65,8 +69,7 @@ function EditNote(props){
                     />
 
                 <label>Text:</label>
-                <textarea
-                    typeof="text"
+                <TextEditor
                     name="text"
                     value={text}
                     onChange={(e)=>setText(e.target.value)}

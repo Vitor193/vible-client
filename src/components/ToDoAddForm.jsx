@@ -18,6 +18,8 @@ function AddToDo(props){
                 setTopic("");
             })
             .catch((error)=>console.log(error));
+
+            props.refreshToDo();
     };
 
     return(

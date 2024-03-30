@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import TextEditor from "./TextEditor";
 
 const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -12,14 +13,15 @@ function AddNote(props){
         e.preventDefault();
 
         const requestBody= {title,tag,text};
+        const storedToken = localStorage.getItem('authToken');
         axios
-            .post(`${API_URL}/notes`,requestBody)
+            .post(`${API_URL}/api/notes`,requestBody,{headers:{Authorization:`Bearer ${storedToken}`}})
             .then((response)=>{
                 setTitle("");
                 setTag("");
                 setText("");
 
-                props.refreshNotes();
+            props.refreshNotes();
             })
             .catch((error)=>console.log(error));
     };
@@ -45,10 +47,10 @@ function AddNote(props){
                 />
 
                 <label>Text:</label>
-                <textarea
+                <TextEditor
                 name="text"
                 value={text}
-                onChange={(e)=>setText(e.target.value)}
+                onChange={(e) => setText(e.target.value)}
                 />
 
                 <button type="submit">Submit</button>

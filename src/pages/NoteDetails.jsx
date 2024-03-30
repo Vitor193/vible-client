@@ -11,8 +11,10 @@ function NoteDetails(props){
     const {noteId} = useParams();
 
     const getNote = ()=>{
+        const storedToken = localStorage.getItem("authToken")
         axios
-            .get(`${API_URL}/notes/${noteId}`)
+            .get(`${API_URL}/api/notes/${noteId}`,
+            {headers:{Authorization:`Bearer ${storedToken}`}})
             .then((response)=>{
                 const oneNote = response.data;
                 setNote(oneNote);

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
+import Form from 'react-bootstrap/Form'
+import Button from "react-bootstrap/Button";
 
 const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -34,35 +36,41 @@ function Signup(props) {
     return(
         <div className="Signup">
             <h1>Signup</h1>
-            <form onSubmit={handleSignupSubmit}>
-                <label>Email:</label>
-                    <input
+            <Form onSubmit={handleSignupSubmit}>
+                <Form.Group>
+                <Form.Label>Email:</Form.Label>
+                    <Form.Control
                         type="email"
                         name="email"
                         value={email}
                         onChange={handleEmail}
                     />
-                <label>Password:</label>
-                    <input
+                </Form.Group>
+                <Form.Group>
+                <Form.Label>Password:</Form.Label>
+                    <Form.Control
                         type="password"
                         name="password"
                         value={password}
                         onChange={handlePassword}
                     />
-                <label>Name:</label>
-                    <input
+                </Form.Group>
+                <Form.Group>
+                <Form.Label>Name:</Form.Label>
+                    <Form.Control
                         type="text"
                         name="name"
                         value={name}
                         onChange={handleName}
                     />
-                <button type="submit">Sign up</button>
-            </form>
+                </Form.Group>
+                <Button className="primary" type="submit">Sign up</Button>
+            </Form>
 
             { errorMessage && <p className="error-message">{errorMessage}</p>} 
             
             <p>Already have an account?</p>
-            <Link to={"/login"}>Login </Link>
+            <Button className="primary" href="/login">Login </Button>
 
         </div>
     )

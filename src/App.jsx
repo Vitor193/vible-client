@@ -1,29 +1,36 @@
 import { useState } from 'react';
 import {Routes,Route} from 'react-router-dom';
-import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Notes from './pages/Notes';
+import NavbarComp from './components/Navbar';
+import Footer from './components/Footer';
 import NoteDetails from './pages/NoteDetails';
 import EditNote from './pages/EditNote';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+
 
 import './App.css';
+import IsPrivate from './components/IsPrivate';
+import IsAnon from './components/IsAnon';
+
 
 function App() {
 
   return (
     <div className='App'>
-      <Navbar />
+      <NavbarComp />
 
       <Routes>
         <Route path="/" element= {<Home />} />
-        <Route path="/notes" element= {<Notes/>} />
-        <Route path="/notes/:noteId" element= {<NoteDetails/>} />
-        <Route path="/notes/edit/:noteId" element= {<EditNote/>} />
-        <Route path="/signup" element= {<Signup/>} />
-        <Route path="/login" element= {<Login/>} />
+        <Route path="/notes" element= {<IsPrivate><Notes/> </IsPrivate>} />
+        <Route path="/notes/:noteId" element= {<IsPrivate><NoteDetails/></IsPrivate>} />
+        <Route path="/notes/edit/:noteId" element= {<IsPrivate><EditNote/></IsPrivate>} />
+        <Route path="/signup" element= {<IsAnon><Signup/></IsAnon>} />
+        <Route path="/login" element= {<IsAnon><Login/> </IsAnon>} />
       </Routes>
+      <Footer/>
     </div>
   )
 }

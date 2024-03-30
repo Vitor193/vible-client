@@ -1,0 +1,33 @@
+
+.custom-purple{
+    color: rgb(120, 35, 200);
+    
+}
+
+.custom-carousel {
+    max-width:auto;
+    margin: auto;
+  
+    
+    
+}
+
+.carousel-container {
+    width: 100%; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+   
+    /* Add any other styling you want */
+
+}
+
+
+.c-img {
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8);
+    }
+
+.c-item {
+        height: 480px;
+        background-color: bisque;
+        }
