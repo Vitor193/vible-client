@@ -1,4 +1,4 @@
-# My Awesome App
+# Vible
 
 Welcome to **Vible**! This app was built to create notes and set chore lists so you don't forget anything. 🚀
 
