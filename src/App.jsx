@@ -8,6 +8,7 @@ import NoteDetails from './pages/NoteDetails';
 import EditNote from './pages/EditNote';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import User from './pages/User';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/notes/edit/:noteId" element= {<IsPrivate><EditNote/></IsPrivate>} />
         <Route path="/signup" element= {<IsAnon><Signup/></IsAnon>} />
         <Route path="/login" element= {<IsAnon><Login/> </IsAnon>} />
+        <Route path="/user" element={<IsPrivate><User/></IsPrivate>}/>
       </Routes>
       <Footer/>
     </div>

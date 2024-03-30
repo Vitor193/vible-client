@@ -2,20 +2,20 @@ import {Link} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import '../styles/Button.css'
+import axios from 'axios';
 
-function NoteCard({title,tag,_id}){
+function ToDoCard({title,topic,_id}){
+    
     return(
-        <div className="NoteCard card">
+        <div className="ToDoCard card">
             <Card className="terciary">
                 <Card.Header>{title}</Card.Header>
-                <Card.Text>{tag}</Card.Text>
+                <Card.Text>{topic}</Card.Text>
             
-            <Link to={`/notes/${_id}`}>
-                <Button className="custom-button" variant="secondary">see Note</Button>
-            </Link>
+        
             </Card>
         </div>
     )
 }
 
-export default NoteCard;
+export default ToDoCard;

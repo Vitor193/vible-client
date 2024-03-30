@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import TextEditor from "./TextEditor";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Container from "react-bootstrap/esm/Container";
 
 const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -29,32 +32,37 @@ function AddNote(props){
     return(
         <div className="AddNote">
             <h3>Add Note</h3>
-            <form onSubmit={handleSubmit}>
-                <label>Title:</label>
-                <input
+            <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formBasicTitle">
+                <Form.Label>Title:</Form.Label>
+                <Form.Control
                 type="text"
                 name="title"
                 value={title}
                 onChange={(e)=>setTitle(e.target.value)}
                 />
-
-                <label>Tag:</label>
-                <input
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicTag">
+                <Form.Label>Tag:</Form.Label>
+                <Form.Control
                 type="text"
                 name="tag"
                 value={tag}
                 onChange={(e)=>setTag(e.target.value)}
                 />
-
-                <label>Text:</label>
-                <TextEditor
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Text:</Form.Label>
+                <TextEditor text={text} setText={setText} handleSubmit={handleSubmit}
                 name="text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 />
-
-                <button type="submit">Submit</button>
-            </form>
+                </Form.Group>
+                <div style={{ display: "flex", justifyContent: "center",marginTop: "50px" }}>
+                <Button variant="secondary" size="lg" type="submit">Submit</Button>
+                </div>
+            </Form>
         </div>
     );
 

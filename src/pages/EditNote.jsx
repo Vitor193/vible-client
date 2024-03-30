@@ -69,7 +69,8 @@ function EditNote(props){
                     />
 
                 <label>Text:</label>
-                <TextEditor
+                <TextEditor text={text} setText={setText} handleSubmit={handleFormSubmit}
+                    
                     name="text"
                     value={text}
                     onChange={(e)=>setText(e.target.value)}

@@ -64,13 +64,13 @@ function Signup(props) {
                         onChange={handleName}
                     />
                 </Form.Group>
-                <Button className="primary" type="submit">Sign up</Button>
+                <Button className="secondary" type="submit">Sign up</Button>
             </Form>
 
             { errorMessage && <p className="error-message">{errorMessage}</p>} 
             
             <p>Already have an account?</p>
-            <Button className="primary" href="/login">Login </Button>
+            <Button className="secondary" href="/login">Login </Button>
 
         </div>
     )

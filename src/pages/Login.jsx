@@ -60,12 +60,12 @@ function Login(props) {
                     />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">Login</Button>
+                <Button variant="secondary" type="submit">Login</Button>
             </Form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
             <p>Don't have an account yet?</p>
-            <Button href="/signup">Sign up</Button>
+            <Button variant="secondary" href="/signup">Sign up</Button>
         </div>
     )
 }

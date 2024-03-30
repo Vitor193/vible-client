@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/esm/Col'
 
 function Footer() {
     return (
-        <footer className="bg-light py-4 my-4 border-top fixed-bottom d-flex flex-wrap justify-content-between align-items-center">
+        <footer className="bg-light py-4 my-4  d-flex flex-wrap justify-content-between align-items-center">
             <Container fluid='md'>
                 <Row>
                     <Col md={6}>

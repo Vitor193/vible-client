@@ -11,8 +11,9 @@ function AddToDo(props){
         e.preventDefault();
 
         const requestBody ={title,topic};
+        const storedToken = localStorage.getItem('authToken');
         axios   
-            .post(`${API_URL}/todo`, requestBody)
+            .post(`${API_URL}/api/todo`, requestBody,{headers:{Authorization:`Bearer ${storedToken}`}})
             .then((response)=>{
                 setTitle("");
                 setTopic("");

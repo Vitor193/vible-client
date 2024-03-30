@@ -22,6 +22,7 @@ function NavbarComp() {
             {isLoggedIn ? (
               <>
                  <Nav.Link href="/notes">Notes</Nav.Link>
+                 <Nav.Link href="/user">User</Nav.Link>
                 <Button variant="light" onClick={logOutUser}>
                   Logout
                 </Button>

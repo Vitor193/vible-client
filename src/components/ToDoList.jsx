@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link, useParams } from "react-router-dom";
 import AddToDo from "./ToDoAddForm";
+import ToDoCard from "./ToDoCard";
 
 
 const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5005";
@@ -12,8 +13,9 @@ function ToDos() {
     const [editingId, setEditingId] = useState(null);
 
     const getAllToDos = ()=>{
+        const storedToken = localStorage.getItem("authToken")
         axios
-            .get(`${API_URL}/todo`)
+            .get(`${API_URL}/api/todo`,{headers:{Authorization:`Bearer ${storedToken}`}})
             .then((response)=>setToDos(response.data))
             .catch((error)=>console.log(error));
     };
@@ -22,8 +24,9 @@ function ToDos() {
     },[]);
 
     const deleteToDo = (toDoId) =>{
+        const storedToken = localStorage.getItem("authToken")
         axios   
-            .delete(`${API_URL}/todo/${toDoId}`)
+            .delete(`${API_URL}/api/todo/${toDoId}`,{headers:{Authorization:`Bearer ${storedToken}`}})
             .then(()=>{
                 getAllToDos();
             })
@@ -31,8 +34,9 @@ function ToDos() {
     };
 
     const updateToDo = (toDoId, updatedTitle) => {
+        const storedToken = localStorage.getItem("authToken")
         axios
-            .put(`${API_URL}/todo/${toDoId}`,{title:updatedTitle})
+            .put(`${API_URL}/api/todo/${toDoId}`,{title:updatedTitle},{headers:{Authorization:`Bearer ${storedToken}`}})
             .then(()=>{
                 getAllToDos();
         setEditingId(null);
@@ -46,24 +50,11 @@ function ToDos() {
 
         {toDos.map((toDo) => (
             <div className="toDoCard card" key={toDo._id}>
-                {toDo._id === editingId ? (
-                    
-                    <form onSubmit={(e) => {
-                        e.preventDefault();
-                        const updatedTitle = e.target.title.value;
-                        updateToDo(toDo._id, updatedTitle);
-                    }}>
-                        <input type="text" name="title" defaultValue={toDo.title} />
-                        <button type="submit">Save</button>
-                        <button onClick={() => setEditingId(null)}>Cancel</button>
-                    </form>
-                ) : (
-                    
-                    <>
-                        <li>{toDo.title}</li>
-                        <button onClick={() => setEditingId(toDo._id)}>Edit</button>
-                    </>
-                )}
+                 {toDos.map((toDo)=>(
+                <ToDoCard key={toDo._id} {...toDo}/>
+               
+            ))}
+
                 <button onClick={() => deleteToDo(toDo._id)}>Delete</button>
             </div>
         ))}

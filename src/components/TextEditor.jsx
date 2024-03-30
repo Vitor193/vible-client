@@ -2,7 +2,7 @@ import React from "react";
 import 'quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
 
-const TextEditor = () => {
+const TextEditor = ({ text, setText, handleSubmit }) => {
   
   var modules = {
     toolbar: [
@@ -29,12 +29,17 @@ const TextEditor = () => {
   ];
 
   const handleProcedureContentChange = (content) => {
+    setText(content);
+    const hiddenInput = document.querySelector('input[name="noteContent"]');
+    hiddenInput.value = content;
     console.log("content---->", content);
   };
 
   return (
     <div >
-      <h1 style={{ textAlign: "center" }}>Text Editor In React JS</h1>
+      <h1 style={{ textAlign: "center" }}>Write your note here:</h1>
+      <input type="hidden" name="noteContent" />
+        <div style={{ display: "grid", justifyContent: "center" }}></div>
       <div style={{ display: "grid", justifyContent: "center"}}>
         <ReactQuill
           theme="snow"
@@ -45,7 +50,9 @@ const TextEditor = () => {
           style={{ height: "220px" }}
         >
         </ReactQuill>
+        
       </div>
+     
     </div>
   );
 

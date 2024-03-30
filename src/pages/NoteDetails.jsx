@@ -1,7 +1,8 @@
 import {useState,useEffect} from "react";
 import axios from "axios";
 import { Link,useParams } from "react-router-dom";
-
+import Button from "react-bootstrap/esm/Button";
+import '../styles/Button.css'
 
 const API_URL = import.meta.env.REACT_APP_API_URL || "http://localhost:5005";
 
@@ -32,15 +33,15 @@ function NoteDetails(props){
                 <>
                     <h1>{note.title}</h1>
                     <h3>{note.tag}</h3>
-                    <p>{note.text}</p>
+                    <div dangerouslySetInnerHTML={{ __html: note.text }} />
                 </>
             )}
 
             <Link to={"/notes"}>
-                <button>back to notes</button>
+                <Button variant="secondary" className="custom-button">back to notes</Button>
             </Link>
-            <Link to={`notes/edit/${noteId}`}>
-                <button>Edit Note</button>
+            <Link to={`/notes/edit/${noteId}`}>
+                <Button variant="secondary" className="custom-button">Edit Note</Button>
             </Link>
 
         </div>
